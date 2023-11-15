@@ -3,7 +3,13 @@ const blog = require('../Model/blogModel')
 
 const getAllBlogs = asyncErrorHandler(async (req,res,next) => {
     try {
-        const response = await blog.find({})
+        const response = await blog
+            .find({})
+            .populate({
+                path: 'userData',
+                select: 'name -_id'
+            })
+
         res.status(200).json({status: 'Success', response})
     } catch(err){
         res.status(400).json({status: 'Error', message: `Error occured : ${err}`})

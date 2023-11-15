@@ -1,11 +1,16 @@
 import React from 'react'
 
-const BlogTemplate = ({blog}) => {
+const BlogTemplate = ({ blog }) => {
+    const { title, description, content, userData: {
+        name: authorName
+    } = {} } = blog
+
     return (
         <>
-        <p>Title: {blog.title}</p>
-        <p>Description: {blog.description}</p>
-        <p>Content: {blog.content}</p>
+            <p>Title: {title}</p>
+            <p>Description: {description}</p>
+            <p>Content: {content}</p>
+            {authorName && <p>authorName: {authorName}</p>}
         </>
     )
 }

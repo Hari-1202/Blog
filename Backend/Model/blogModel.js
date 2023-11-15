@@ -33,7 +33,16 @@ blogSchema.set('toJSON', {
        delete ret.id
        delete ret._id
        delete ret.__v
+       ret.userData && delete ret.userData.id
     }
 });
+
+blogSchema.virtual('userData' , {
+    ref : 'Authentictaor',
+    foreignField: '_id',
+    localField: 'userId',
+    justOne: true,
+})
+
 
 module.exports = mongoose.model('blog', blogSchema)
