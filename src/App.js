@@ -4,16 +4,29 @@ import Overview from './components/Blog/Overview';
 import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
 import Header from './components/Header/Header';
-import { Provider } from 'react-redux';
+import { Provider, useDispatch } from 'react-redux';
 import store from './store/store';
 import AddBlog from './components/Blog/userBlog/AddBlog';
 import { BASE_URL } from './constants/constants';
 import GetBlog from './components/Blog/userBlog/GetBlog';
 import { requestHandler } from './utils/requestHandler';
 import ProtectedRouteHandler from './utils/protectedRouteHandler';
+import { saveUserData } from './reducers/user/userReducer';
 const LazyOverview = React.lazy(() => import('./components/Blog/Overview'));
 
 function ApplicationRouter() {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    const tokenExpiryTime = Date.parse(sessionStorage.getItem('expiresIn'))
+    if(Date.now() < tokenExpiryTime ){
+      dispatch(saveUserData({
+          isLoggedIn: true,
+         token: sessionStorage.getItem('token'),
+         expiresIn: sessionStorage.getItem('expiresIn')
+      }))
+    }
+  }, [])
 
   const composedComponent = (Component, options = {
     headerVisibility: true,

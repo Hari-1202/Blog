@@ -5,6 +5,7 @@ const userSlice= createSlice({
     initialState: {
         isLoggedIn: false,
         token: '',
+        expiresIn: ''
     },
     reducers: {
         saveUserData: (state, action) => {
