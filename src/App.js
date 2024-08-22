@@ -7,7 +7,7 @@ import Header from './components/Header/Header';
 import { Provider, useDispatch } from 'react-redux';
 import store from './store/store';
 import AddBlog from './components/Blog/userBlog/AddBlog';
-import { BASE_URL } from './constants/constants';
+import { BASE_PROD_URL, BASE_URL } from './constants/constants';
 import GetBlog from './components/Blog/userBlog/GetBlog';
 import { requestHandler } from './utils/requestHandler';
 import ProtectedRouteHandler from './utils/protectedRouteHandler';
@@ -47,7 +47,7 @@ function ApplicationRouter() {
       <Route path='/' element={composedComponent(LazyOverview, {
          componentName: 'home'
       })} loader={async() => {
-          const res = await fetch(`${BASE_URL}/blog`)
+          const res = await fetch(`${BASE_PROD_URL}/blog`)
           const allBlogData = res.json()
           return allBlogData
       }
