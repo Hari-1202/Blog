@@ -16,7 +16,10 @@ jobs:
         sudo yum install -y nodejs
         sudo yum install -y nginx
         sudo mkdir -p /var/www/html
-        git clone https://github.com/Hari-1202/Blog.git
+    - name: Cloning
+      run: git clone https://github.com/Hari-1202/Blog.git
+    - name: Redirect
+      run: |
         cd Blog/src
         npm install
         npm run build
