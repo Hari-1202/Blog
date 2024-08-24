@@ -1,0 +1,17 @@
+name: EC2 Deployment
+
+on:
+  push:
+    branches:
+      - main  # Adjust this to match your target branch
+
+jobs:
+  deploy:
+    runs-on: [self-hosted, linux]  # Use your self-hosted runner tag here
+
+    steps:
+    - name: Install dependencies
+      run: |
+        sudo yum install -y git
+        sudo yum install -y nodejs
+        sudo yum install -y nginx
