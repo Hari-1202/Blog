@@ -27,6 +27,6 @@ jobs:
     - name: Redirect
       run: |
         cd Blog/src
-        npm install
+        npm install --legacy-peer-deps
         npm run build
         npm start
