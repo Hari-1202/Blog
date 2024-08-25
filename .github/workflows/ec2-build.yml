@@ -17,16 +17,27 @@ jobs:
         sudo yum install -y nodejs
         sudo yum install -y nginx
         sudo mkdir -p /var/www/html
-    - name: Cleanup repo
+
+    - name: Clean up existing directory
       run: |
         if [ -d "Blog" ]; then
           rm -rf Blog
         fi
+
     - name: Cloning
       run: git clone https://github.com/Hari-1202/Blog.git
-    - name: Redirect
+
+    - name: Install npm dependencies
       run: |
         cd Blog/src
-        npm install --legacy-peer-deps
+        npm install --legacy-peer-deps --verbose
+
+    - name: Build the project
+      run: |
+        cd Blog/src
         npm run build
+
+    - name: Start the application
+      run: |
+        cd Blog/src
         npm start
