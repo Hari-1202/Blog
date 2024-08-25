@@ -17,6 +17,12 @@ jobs:
         sudo yum install -y nodejs
         sudo yum install -y nginx
         sudo mkdir -p /var/www/html
+        - name: Clean up existing directory
+    - name: Cleanup repo
+      run: |
+        if [ -d "Blog" ]; then
+          rm -rf Blog
+        fi
     - name: Cloning
       run: git clone https://github.com/Hari-1202/Blog.git
     - name: Redirect
