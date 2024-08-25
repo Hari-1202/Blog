@@ -30,7 +30,7 @@ jobs:
     - name: Install npm dependencies
       run: |
         cd Blog/src
-        npm install --legacy-peer-deps --verbose
+        timeout 3m npm install --legacy-peer-deps --verbose
 
     - name: Build the project
       run: |
