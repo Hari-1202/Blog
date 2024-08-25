@@ -1,13 +1,14 @@
 name: EC2 Deployment
 
 on:
+  workflow_dispatch:
   push:
     branches:
-      - main  # Adjust this to match your target branch
+      - main
 
 jobs:
   deploy:
-    runs-on: [self-hosted, linux]  # Use your self-hosted runner tag here
+    runs-on: [self-hosted, linux]
 
     steps:
     - name: Install dependencies
