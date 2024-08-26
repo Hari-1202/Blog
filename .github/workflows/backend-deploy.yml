@@ -12,7 +12,7 @@ jobs:
             #   uses: actions/checkout@v2
             - name: Deploy
               run: |
-                cd Blog/Backend
+                cd /home/ec2-user/Blog/Backend
                 git pull
                 npm install --legacy-peer-deps
                 sudo systemctl restart backendService.service
