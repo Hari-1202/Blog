@@ -1,43 +1,43 @@
-name: EC2 Deployment
+# name: EC2 Deployment
 
-on:
-  workflow_dispatch:
-#   push:
-#     branches:
-#       - main
+# on:
+#   workflow_dispatch:
+# #   push:
+# #     branches:
+# #       - main
 
-jobs:
-  deploy:
-    runs-on: [self-hosted, linux]
+# jobs:
+#   deploy:
+#     runs-on: [self-hosted, linux]
 
-    steps:
-    - name: Install dependencies
-      run: |
-        sudo yum install -y git
-        sudo yum install -y nodejs
-        sudo yum install -y nginx
-        sudo mkdir -p /var/www/html
+#     steps:
+#     - name: Install dependencies
+#       run: |
+#         sudo yum install -y git
+#         sudo yum install -y nodejs
+#         sudo yum install -y nginx
+#         sudo mkdir -p /var/www/html
 
-    - name: Clean up existing directory
-      run: |
-        if [ -d "Blog" ]; then
-          rm -rf Blog
-        fi
+#     - name: Clean up existing directory
+#       run: |
+#         if [ -d "Blog" ]; then
+#           rm -rf Blog
+#         fi
 
-    - name: Cloning
-      run: git clone https://github.com/Hari-1202/Blog.git
+#     - name: Cloning
+#       run: git clone https://github.com/Hari-1202/Blog.git
 
-    - name: Install npm dependencies
-      run: |
-        cd Blog/src
-        timeout 3m sudo npm install --legacy-peer-deps --verbose
+#     - name: Install npm dependencies
+#       run: |
+#         cd Blog/src
+#         timeout 3m sudo npm install --legacy-peer-deps --verbose
 
-    - name: Build the project
-      run: |
-        cd Blog/src
-        sudo npm run build
+#     - name: Build the project
+#       run: |
+#         cd Blog/src
+#         sudo npm run build
 
-    - name: Start the application
-      run: |
-        cd Blog/src
-        npm start
+#     - name: Start the application
+#       run: |
+#         cd Blog/src
+#         npm start

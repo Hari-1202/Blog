@@ -1,27 +1,27 @@
-name: Deploy react-app 
+# name: Deploy react-app 
 
 
 
-on:
-  push:
-    branches:
-      - main  # Replace with your branch name
+# on:
+#   push:
+#     branches:
+#       - main  # Replace with your branch name
 
-jobs:
-  deploy:
-    runs-on: self-hosted  
+# jobs:
+#   deploy:
+#     runs-on: self-hosted  
     
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v2
+#     steps:
+#       - name: Checkout Code
+#         uses: actions/checkout@v2
 
-      - name: Build and Deploy
-        run: |
-          npm install --legacy-peer-deps
-          npm run build
-          
-          sudo cp -r ./build/* /var/www/html
+#       - name: Build and Deploy
+#         run: |
+#           npm install --legacy-peer-deps
+#           npm run build
+#           sudo cp -r ./build/* /var/www/html
+#           ls -la /var/www/html
 
-      - name: Restart Nginx
-        run: |
-          sudo systemctl restart nginx
+#       - name: Restart Nginx
+#         run: |
+#           sudo systemctl restart nginx
