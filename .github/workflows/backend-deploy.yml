@@ -8,10 +8,11 @@ jobs:
     Deploy:
         runs-on: backend
         steps:
-            - name: Checkout
-              uses: actions/checkout@v2
+            # - name: Checkout
+            #   uses: actions/checkout@v2
             - name: Deploy
               run: |
                 cd Blog/Backend
+                git pull
                 npm install --legacy-peer-deps
                 sudo systemctl restart backendService.service
