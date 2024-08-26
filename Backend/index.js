@@ -9,6 +9,7 @@ const establishDatabaseConnection = require('./db')
 const errorHandler = require('./Controller/errorController')
 const cors = require('cors')
 const app = express()
+const router = express.Router()
 
 app.use(express.json())
 app.use(cookieParser())
@@ -35,7 +36,11 @@ establishDatabaseConnection()
 
 const baseApiVersion = '/api/v1/'
 
+router.get('/healthcheck', (req, res) => {
+  res.status(200).json({meassage: 'healthcheck'})
+})
 
+app.use(router)
 app.use(baseApiVersion , authRouter)
 app.use(baseApiVersion + 'tasks', taskRouter)
 app.use(baseApiVersion + 'users', userRouter)
